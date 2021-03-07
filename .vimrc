@@ -1,23 +1,26 @@
 " VUNDLE PLUGINS
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'joshdick/onedark.vim'
-Plugin 'junegunn/fzf'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'lervag/vimtex'
-Plugin 'scrooloose/nerdtree'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'yinflying/matlab.vim'
-Plugin 'tidalcycles/vim-tidal'
 
-call vundle#end()           
-filetype plugin indent on    
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'lervag/vimtex'
+Plug 'scrooloose/nerdtree'
+Plug 'frazrepo/vim-rainbow'
+Plug 'airblade/vim-gitgutter'
+Plug 'yinflying/matlab.vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rdolgushin/groovy.vim'
+Plug 'kien/ctrlp.vim'
+call plug#end()
+
 " Fix to let ESC work as espected with Autoclose plugin
 let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
 " turn on git branch display
@@ -26,7 +29,7 @@ let g:airline#extensions#branch#enabled = 1
 " BASIC
 set breakindent
 " turn on line numbering
-set number norelativenumber
+set number relativenumber
 set numberwidth=4
 " tabs and spaces handling
 set expandtab
@@ -35,6 +38,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " SYNTAX HIGHLIGHTING
+colorscheme onedark
 "Use 24-bit (true-color) mode for each vim version when outside tmux.
 if (empty($TMUX))
   if (has("nvim"))
@@ -46,21 +50,6 @@ if (empty($TMUX))
 endif
 " turn on highlighting
 syntax on
-
-if (has("autocmd")) && (expand("%:e")=="tidal")
-    augroup colorextend
-        autocmd!
-        let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-        autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-        autocmd ColorScheme * call onedark#extend_highlight("Statement", { "fg": { "cterm": 160 } })
-        autocmd ColorScheme * call onedark#extend_highlight("Number", { "fg": { "cterm": 255 } })
-        autocmd ColorScheme * call onedark#extend_highlight("Float", { "fg": { "cterm": 255 } })
-        autocmd ColorScheme * call onedark#extend_highlight("Identifier", { "fg": { "cterm": 160 } })
-        autocmd ColorScheme * call onedark#extend_highlight("String", { "fg": { "cterm": 160 } })
-        autocmd ColorScheme * call onedark#extend_highlight("Operator", { "fg": { "cterm": 255 } })
-    augroup END
-endif
-colorscheme onedark
 
 "turn on rainbow brackets
 let g:rainbow_active = 1
@@ -74,3 +63,10 @@ autocmd BufWritePost,FileWritePost *.tex :VimtexCompile
 
 " KEYMAP
 map tree :NERDTreeToggle<CR>
+
+" CLIPBOARD
+set clipboard=unnamed
+
+" vimbegood
+let g:vim_be_good_floating = 0
+

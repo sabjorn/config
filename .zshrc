@@ -1,4 +1,3 @@
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/simonzimmermann/.oh-my-zsh
 
@@ -17,37 +16,32 @@ plugins=(zsh-aliases-exa git osx jira zsh-autosuggestions zsh-syntax-highlightin
 autoload -U colors && colors
 export TERM="xterm-256color"
 
-#ANACONDA
-export PATH=$PATH:$HOME/anaconda3/bin
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/simonzimmermann/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/simonzimmermann/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/simonzimmermann/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/simonzimmermann/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-#PATHING
 export CPLUS_INCLUDE_PATH=/usr/local/include
 export LIBRARY_PATH=/usr/local/lib
 export DEFAULT_USER="$(whoami)"
 
 #ALIASES
-alias python3="/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7/Python"
 alias todo="todoist --color list --filter 'overdue | today'"
 alias c="clear"
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 alias tidalup="~/Google\ Drive/SIGMOID/workflow/tidal/launch_tidal.sh"
+alias vim="nvim"
 
 #DEFAULTS
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 #INCLUDES
 source "/Users/simonzimmermann/dev_tools/todoist/todoist_functions_fzf.sh"
 source $ZSH/oh-my-zsh.sh
+
+#PATH
+export PATH="$HOME/dev/normalizer/:$PATH"
+
+neofetch --stdout
+export PATH="/usr/local/sbin:$PATH"
+
+#SERVICES
+fswatch -0 ~/Dropbox/HIDONASH/djMusic/uncompressed | xargs -0 -n 1 -I {} ~/dev/music_library_manager/convert_to_mp3.sh {} &
+fswatch -0 ~/Dropbox/HIDONASH/djMusic/compressed | xargs -0 -n 1 -I {} ~/dev/music_library_manager/convert_to_aiff.sh {} &
+

@@ -1,2 +1,8 @@
 # config
-personal .config files, currently .vimrc, .zshrc
+
+My personal .config files.
+
+Currently:
+* .vimrc
+* .zshrc.
+
