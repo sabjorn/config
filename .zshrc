@@ -37,6 +37,7 @@ source $ZSH/oh-my-zsh.sh
 
 #PATH
 export PATH="$HOME/dev/normalizer/:$PATH"
+export PATH="~/.cargo/bin/:$PATH"
 
 neofetch --stdout
 export PATH="/usr/local/sbin:$PATH"

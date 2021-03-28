@@ -9,7 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
-Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
@@ -19,54 +19,41 @@ Plug 'yinflying/matlab.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rdolgushin/groovy.vim'
 Plug 'kien/ctrlp.vim'
+Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
-" Fix to let ESC work as espected with Autoclose plugin
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-" turn on git branch display
-let g:airline#extensions#branch#enabled = 1
-
 " BASIC
+set nowrap
 set breakindent
-" turn on line numbering
 set number relativenumber
 set numberwidth=4
-" tabs and spaces handling
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set smartindent
 
-" SYNTAX HIGHLIGHTING
-colorscheme onedark
-"Use 24-bit (true-color) mode for each vim version when outside tmux.
-if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-" turn on highlighting
+" LOOK
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 syntax on
-
-"turn on rainbow brackets
 let g:rainbow_active = 1
 
-" LATEX
+" ADVANCED
+" git airline
+let g:airline#extensions#branch#enabled = 1
+" LaTeX
 let g:vimtex_view_method = 'skim'
 let g:tex_flavor = 'latex'
 autocmd BufNewFile,BufRead *.tex   set syntax=tex
 autocmd BufNewFile,BufRead *.cls   set syntax=tex
 autocmd BufWritePost,FileWritePost *.tex :VimtexCompile
-
-" KEYMAP
+"nerdtree
 map tree :NERDTreeToggle<CR>
-
-" CLIPBOARD
+"clipboard
 set clipboard=unnamed
-
-" vimbegood
+"vim be good
 let g:vim_be_good_floating = 0
 
