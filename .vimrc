@@ -9,7 +9,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'VundleVim/Vundle.vim'
-Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'lervag/vimtex'
 Plug 'scrooloose/nerdtree'
@@ -19,6 +19,7 @@ Plug 'yinflying/matlab.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rdolgushin/groovy.vim'
 Plug 'kien/ctrlp.vim'
+Plug 'Shougo/deoplete.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
@@ -34,8 +35,8 @@ set shiftwidth=4
 set smartindent
 
 " LOOK
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+colorscheme onedark
+let g:airline_theme='onedark'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 syntax on
@@ -43,6 +44,7 @@ let g:rainbow_active = 1
 
 " ADVANCED
 " git airline
+let g:deoplete#enable_at_startup = 1
 let g:airline#extensions#branch#enabled = 1
 " LaTeX
 let g:vimtex_view_method = 'skim'
