@@ -19,7 +19,11 @@ Plug 'yinflying/matlab.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'rdolgushin/groovy.vim'
 Plug 'kien/ctrlp.vim'
+
 Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
+
 Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
@@ -43,8 +47,13 @@ syntax on
 let g:rainbow_active = 1
 
 " ADVANCED
-" git airline
+" autocompletion
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/Users/simonzimmermann/dev_tools/llvm-project/build/lib/libclang.dylib'
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteTags
+
+" git airline
 let g:airline#extensions#branch#enabled = 1
 " LaTeX
 let g:vimtex_view_method = 'skim'
