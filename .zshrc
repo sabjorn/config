@@ -21,10 +21,6 @@ export LIBRARY_PATH=/usr/local/lib
 export DEFAULT_USER="$(whoami)"
 
 #ALIASES
-alias todo="todoist --color list --filter 'overdue | today'"
-alias c="clear"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-alias tidalup="~/Google\ Drive/SIGMOID/workflow/tidal/launch_tidal.sh"
 alias vim="nvim"
 
 #DEFAULTS
@@ -32,14 +28,11 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 #INCLUDES
-source "/Users/simonzimmermann/dev_tools/todoist/todoist_functions_fzf.sh"
 source $ZSH/oh-my-zsh.sh
 
 #PATH
 export PATH="$HOME/dev/normalizer/:$PATH"
 export PATH="~/.cargo/bin/:$PATH"
-
-neofetch --stdout
 export PATH="/usr/local/sbin:$PATH"
 
 #SERVICES
