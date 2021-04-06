@@ -15,6 +15,7 @@ plugins=(zsh-aliases-exa git osx jira zsh-autosuggestions zsh-syntax-highlightin
 # enable colors
 autoload -U colors && colors
 export TERM="xterm-256color"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#7f7f7f"
 
 export CPLUS_INCLUDE_PATH=/usr/local/include
 export LIBRARY_PATH=/usr/local/lib
@@ -22,6 +23,11 @@ export DEFAULT_USER="$(whoami)"
 
 #ALIASES
 alias vim="nvim"
+alias git_rinse="git clean -xfd
+                 git submodule foreach --recursive git clean -xfd
+                 git reset --hard
+                 git submodule foreach --recursive git reset --hard
+                 git submodule update --init --recursive"
 
 #DEFAULTS
 export VISUAL=nvim
