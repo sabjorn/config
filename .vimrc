@@ -1,3 +1,6 @@
+" requirements:
+" nvim nightly, neovim python module, clang dyllib (llvm project), ripgrep
+
 " VUNDLE PLUGINS
 set nocompatible
 
@@ -16,22 +19,26 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'dense-analysis/ale'
 
-" coloring
+" looks
 Plug 'frazrepo/vim-rainbow'
 Plug 'yinflying/matlab.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'rdolgushin/groovy.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " autocompletion
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 
-" telescope
+"Telescope
+Plug 'BurntSushi/ripgrep'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " misc
 Plug 'ThePrimeagen/vim-be-good'
@@ -48,6 +55,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
+let mapleader=" "
 
 
 " LOOK
@@ -66,6 +74,12 @@ let g:deoplete#sources#clang#libclang_path = '/Users/simonzimmermann/dev_tools/l
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteTags
 
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " git airline
 let g:airline#extensions#branch#enabled = 1
 
@@ -77,7 +91,7 @@ autocmd BufNewFile,BufRead *.cls   set syntax=tex
 autocmd BufWritePost,FileWritePost *.tex :VimtexCompile
 
 "nerdtree
-map tree :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 
 "clipboard
 set clipboard=unnamed
