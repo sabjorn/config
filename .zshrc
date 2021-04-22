@@ -8,10 +8,13 @@ fi
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export ZSH=/Users/simonzimmermann/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
 # plugins
 plugins=(git osx zsh-autosuggestions zsh-syntax-highlighting docker)
+source $ZSH/oh-my-zsh.sh
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
 # BASIC
 # defaults
@@ -47,3 +50,4 @@ export PATH="/usr/local/sbin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
