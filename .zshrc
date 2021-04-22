@@ -1,17 +1,17 @@
 # OH MY ZSH
-# Path to your oh-my-zsh installation.
+
+# powerlevel
+# enable powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
 export ZSH=/Users/simonzimmermann/.oh-my-zsh
-# powerline
-POWERLEVEL9K_CUSTOM_OS_ICON='echo 🐉'
-POWERLEVEL9K_CUSTOM_OS_ICON_BACKGROUND=black
-POWERLEVEL9K_CUSTOM_OS_ICON_FOREGROUND=white
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_os_icon ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time status background_jobs time)
-ZSH_THEME="powerlevel9k/powerlevel9k"
-# plugins
-plugins=(git osx jira zsh-autosuggestions zsh-syntax-highlighting)
-# includes
 source $ZSH/oh-my-zsh.sh
+
+# plugins
+plugins=(git osx zsh-autosuggestions zsh-syntax-highlighting docker)
 
 # BASIC
 # defaults
@@ -43,4 +43,7 @@ export PATH="/usr/local/sbin:$PATH"
 #SERVICES
 {fswatch -0 ~/Dropbox/HIDONASH/djMusic/uncompressed | xargs -0 -n 1 -I {} ~/dev/music_library_manager/convert_to_mp3.sh {} &} || true
 {fswatch -0 ~/Dropbox/HIDONASH/djMusic/compressed | xargs -0 -n 1 -I {} ~/dev/music_library_manager/convert_to_aiff.sh {} &} || true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
