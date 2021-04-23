@@ -42,6 +42,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " misc
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 
@@ -65,6 +66,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 syntax on
 let g:rainbow_active = 1
+set encoding=utf8
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
 
 
 " ADVANCED
