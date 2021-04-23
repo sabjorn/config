@@ -67,7 +67,6 @@ set termguicolors
 syntax on
 let g:rainbow_active = 1
 set encoding=utf8
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
 
 
 " ADVANCED
