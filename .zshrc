@@ -9,7 +9,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export ZSH=/Users/simonzimmermann/.oh-my-zsh
 # plugins
-plugins=(git osx zsh-autosuggestions zsh-syntax-highlighting docker)
+plugins=(git osx zsh-syntax-highlighting docker)
 source $ZSH/oh-my-zsh.sh
 
 # vi mode
