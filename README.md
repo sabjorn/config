@@ -1,8 +1,9 @@
 # config
 
-My personal .config files.
-
-Currently:
+My personal headless config consisting of:
 * .vimrc
-* .zshrc.
+* .zshrc
+* iterm-profile
+* patched font
+
 
