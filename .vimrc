@@ -55,16 +55,17 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set smartindent
-let mapleader=" "
+" let mapleader=" "
 
 
 " LOOK
-colorscheme onedark
-let g:airline_theme='onedark'
+" colorscheme onedark
+colorscheme monokai
+" let g:airline_theme='onedark'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 syntax on
-let g:rainbow_active = 1
+au FileType c,cpp,objc,objcpp call rainbow#load()
 set encoding=utf8
 
 
@@ -92,7 +93,7 @@ autocmd BufWritePost,FileWritePost *.tex :VimtexCompile
 
 "nerdtree
 map <leader>t :NERDTreeToggle<CR>
-
+let g:NERDTreeWinSize = 20
 "clipboard
 set clipboard=unnamed
 
@@ -268,7 +269,15 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" jump to header
+nnoremap <silent><nowait> gh :<C-u>CocCommand clangd.switchSourceHeader<cr>
+
 let g:cmake_link_compile_commands = 1
 nnoremap <leader>cg :CMakeGenerate<cr>
 nnoremap <leader>cb :CMakeBuild<cr>
 nnoremap <leader>cc :CMakeClean<cr>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
