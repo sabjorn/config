@@ -27,6 +27,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'rdolgushin/groovy.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'crusoexia/vim-monokai'
 
 " C++
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
