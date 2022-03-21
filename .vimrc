@@ -27,11 +27,11 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'rdolgushin/groovy.vim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'crusoexia/vim-monokai'
 
 " C++
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'cdelledonne/vim-cmake'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 
 "Telescope
 Plug 'BurntSushi/ripgrep'
@@ -44,7 +44,6 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
-
 
 " BASIC
 set nowrap
@@ -60,12 +59,13 @@ set smartindent
 
 
 " LOOK
+syntax on
+"colorscheme monokai
 " colorscheme onedark
-colorscheme monokai
+" colorscheme monokai
 " let g:airline_theme='onedark'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
-syntax on
 au FileType c,cpp,objc,objcpp call rainbow#load()
 set encoding=utf8
 
