@@ -31,7 +31,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 " C++
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'cdelledonne/vim-cmake'
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+"Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+Plug 'puremourning/vimspector'
 
 "Telescope
 Plug 'BurntSushi/ripgrep'
@@ -107,6 +108,10 @@ let g:vim_be_good_floating = 0
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
+
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB' ]
 
 " TextEdit might fail if hidden is not set.
 set hidden
