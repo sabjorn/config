@@ -62,11 +62,11 @@ set smartindent
 " LOOK
 syntax on
 "colorscheme monokai
-" colorscheme onedark
-" colorscheme monokai
-" let g:airline_theme='onedark'
+colorscheme onedark
+"colorscheme monokai
+"let g:airline_theme='onedark'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
+"set termguicolors
 au FileType c,cpp,objc,objcpp call rainbow#load()
 set encoding=utf8
 
