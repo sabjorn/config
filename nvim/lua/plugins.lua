@@ -41,7 +41,8 @@ require("lazy").setup({
         config = function()
             vim.g.ale_fix_on_save = 1
             vim.g.ale_linters = {
-                python = {'flake8', 'black', 'mypy'},
+                --python = {'flake8', 'black', 'mypy'},
+                python = {'black', 'mypy'},
                 c = {'clang', 'clangtidy'},
                 cpp = {'clang', 'clangtidy'},
                 bash = {'shellcheck'},
@@ -94,7 +95,10 @@ require("lazy").setup({
     'scrooloose/nerdtree',
     --'nvim-tree/nvim-tree.lua' -- replace nerdtree TODO
     --'folke/todo-comments.nvim', -- search TODO, maybe eventually
-    'nvim-treesitter/nvim-treesitter',
+    {
+        'nvim-treesitter/nvim-treesitter',
+        tag = "v0.9.2",
+    },
     'tree-sitter/tree-sitter-python',
     -- 'folke/trouble.nvim' -- learn how to config
  
