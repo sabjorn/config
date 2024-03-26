@@ -40,8 +40,11 @@ require'nvim-treesitter.configs'.setup {
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, {silent = true})
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, {silent = true})
 
--- coc
+-- dap
+vim.keymap.set('n', 'gr', function()
+    require('telescope.builtin').lsp_references({ jump_type = "never" })
+end, {silent = true})
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {silent = true})
 vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {silent = true})
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {silent = true})
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, {silent = true})
+--vim.keymap.set('n', 'gr', vim.lsp.buf.references, {silent = true})
