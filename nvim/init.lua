@@ -30,6 +30,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
 })
 
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "python", -- This line ensures the Python parser is installed
+}
 -- vim.g.blamer_enabled = true
 
 -- move to own file eventually
