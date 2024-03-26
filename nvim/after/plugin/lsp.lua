@@ -2,29 +2,31 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 -- Python
-vim.g.python_host_prog = '/usr/local/bin/python'
-vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python'
+vim.g.python_host_prog = '~/micro-services/venv/bin/python'
+vim.g.python3_host_prog = '~/micro-services/venv/bin/python'
 
 -- CPP
 --require'lspconfig'.clangd.setup{}
 --
---lsp.on_attach(function(client, bufnr)
---	local opts = { buffer = bufnr, remap = false }
---
---	if client.name == "eslint" then
---		vim.cmd.LspStop('eslint') return
---	end
---
---	vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
---	vim.keymap.set("n", "<leader>D", vim.lsp.buf.hover, opts)
---	vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next, opts)
---	vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev, opts)
---	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
---	vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
---	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
---	vim.keymap.set("i", "<leader>h", vim.lsp.buf.signature_help, opts)
---    vim.keymap.set("n", '<leader>gh', '<cmd>ClangdSwitchSourceHeader<cr>')
---end)
+lsp.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
+
+	if client.name == "eslint" then
+		vim.cmd.LspStop('eslint') return
+	end
+
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)
+	vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, opts)
+	vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', function()
+        require('telescope.builtin').lsp_references({ jump_type = "never" })
+    end, {silent = true})
+	vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
+	vim.keymap.set("i", "<leader>h", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", 'gh', '<cmd>ClangdSwitchSourceHeader<cr>')
+end)
 
 -- Set up nvim-cmp.
 local cmp = require'cmp'
