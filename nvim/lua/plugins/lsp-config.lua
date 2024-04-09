@@ -9,7 +9,6 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup({
 				ensure_installed = {
-          "gopls",
 					"pyright",
 					"pylsp",
 				},
@@ -23,7 +22,6 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-      lspconfig.gopls.setup({})
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
 				python = {
@@ -49,7 +47,7 @@ return {
             vim.keymap.set('n', 'gr', function()
                 require('telescope.builtin').lsp_references({ jump_type = "never" })
             end, {silent = true})
-            vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
+            --vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
             vim.keymap.set("i", "<leader>h", vim.lsp.buf.signature_help, opts)
             vim.keymap.set("n", 'gh', '<cmd>ClangdSwitchSourceHeader<cr>')
 
@@ -57,7 +55,7 @@ return {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
 					local opts = { buffer = ev.buf }
-			    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+			    vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
 				end,
 			})
 		end,
