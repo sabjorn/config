@@ -8,6 +8,8 @@ return {
         "md",
         "yaml",
         "go",
+        "rust",
+        "c++",
       }
     },
     build = ":TSUpdate",
