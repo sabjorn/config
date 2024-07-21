@@ -11,6 +11,7 @@ return {
 				ensure_installed = {
 					"pyright",
 					"pylsp",
+                    "rust_analyzer",
 				},
 				auto_install = true,
 			})
