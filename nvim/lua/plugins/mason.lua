@@ -8,11 +8,12 @@ return {
       "black",
       "ruff",
       "mypy",
+      "rust-analyzer",
+      "codelldb",
     }
   },
   lazy = false,
   config = function()
     require("mason").setup()
   end,
-
 }

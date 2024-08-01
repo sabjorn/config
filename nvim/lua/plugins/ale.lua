@@ -8,12 +8,14 @@ return {
             c = {'clang', 'clangtidy'},
             cpp = {'clang', 'clangtidy'},
             bash = {'shellcheck'},
+            rust = {'cargo', 'rls'},
         }
         vim.g.ale_fixers = {
             python = {'black'},
             c = {'clang-format', 'clangtidy'},
             cpp = {'clang-format', 'clangtidy'},
             bash = {'shfmt'},
+            rust = {'rustfmt'},
         }
         vim.g.ale_sign_error = '✗'
         vim.g.ale_sign_warning = '⚠'
@@ -34,5 +36,7 @@ return {
         vim.g.ale_lint_on_cursor_hold = 0
         vim.g.ale_lint_on_cursor_moved = 0
         vim.g.ale_lint_on_insert = 0
+        vim.g.ale_rust_cargo_use_clippy = 1
+        vim.g.ale_completion_enabled = 1
     end
 }

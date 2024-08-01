@@ -40,6 +40,19 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
+            lspconfig.rust_analyzer.setup({
+               capabilities = capabilities,
+               settings = {
+                 ["rust-analyzer"] = {
+                   cargo = {
+                     allFeatures = true,
+                   },
+                   procMacro = {
+                     enable = true,
+                   },
+                 },
+               },
+            })
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
             vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)

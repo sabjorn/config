@@ -2,14 +2,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensured_installed = {
+      ensure_installed = {
         "python",
         "lua",
-        "md",
+        "markdown",
         "yaml",
         "go",
         "rust",
-        "c++",
+        "cpp",
       }
     },
     build = ":TSUpdate",
