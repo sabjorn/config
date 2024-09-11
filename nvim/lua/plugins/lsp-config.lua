@@ -12,6 +12,7 @@ return {
 					"pyright",
 					"pylsp",
                     "rust_analyzer",
+                    "ts_ls"
 				},
 				auto_install = true,
 			})
@@ -53,6 +54,8 @@ return {
                  },
                },
             })
+            lspconfig.ts_ls.setup({})
+
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
             vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)

@@ -10,6 +10,10 @@ return {
       "mypy",
       "rust-analyzer",
       "codelldb",
+      'ts_ls',
+      'eslint',
+      'html',
+      'cssls'
     }
   },
   lazy = false,

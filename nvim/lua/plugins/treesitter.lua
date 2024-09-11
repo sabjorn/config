@@ -10,6 +10,8 @@ return {
         "go",
         "rust",
         "cpp",
+        "typescript",
+        "javascript",
       }
     },
     build = ":TSUpdate",

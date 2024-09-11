@@ -27,6 +27,7 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "pyright" },
+					{ name = "ts_ls" },
 				}),
 				snippet = {
 					expand = function(args)
