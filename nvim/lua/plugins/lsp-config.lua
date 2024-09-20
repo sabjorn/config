@@ -54,7 +54,38 @@ return {
                  },
                },
             })
-            lspconfig.ts_ls.setup({})
+
+            lspconfig.ts_ls.setup({
+                 on_attach = function(client, bufnr)
+                   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                 end,
+                settings = {
+                    typescript = {
+                      inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                      }
+                    },
+                    javascript = {
+                      inlayHints = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                      }
+                    }
+                  }
+            })
 
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
             vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
