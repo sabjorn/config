@@ -9,6 +9,8 @@ return {
             cpp = {'clang', 'clangtidy'},
             bash = {'shellcheck'},
             rust = {'cargo', 'rls'},
+            typescript = {'eslint'},
+            javascript = {'eslint'},
         }
         vim.g.ale_fixers = {
             python = {'black'},
@@ -16,6 +18,8 @@ return {
             cpp = {'clang-format', 'clangtidy'},
             bash = {'shfmt'},
             rust = {'rustfmt'},
+            typescript = {'eslint'},
+            javascript = {'eslint'},
         }
         vim.g.ale_sign_error = '✗'
         vim.g.ale_sign_warning = '⚠'
