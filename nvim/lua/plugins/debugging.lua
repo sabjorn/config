@@ -41,6 +41,17 @@ return {
           cwd = "${workspaceFolder}",
           skipFiles = { "**/node_modules/**/*" },
         },
+        -- start chrome with: /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+        {
+          type = "pwa-chrome",
+          name = "Attach to running Chrome instance",
+          request = "attach",
+          port = 9222,
+          webRoot = "${workspaceFolder}",
+          localRoot = "${workspaceFolder}/frontend/js/src",
+          cwd = "${workspaceFolder}",
+          skipFiles = { "**/node_modules/**/*" },
+        },
       }
     end
 
