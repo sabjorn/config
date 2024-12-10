@@ -26,7 +26,7 @@ return {
       debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
       adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
     })
-    for _, language in ipairs({ "typescript", "javascript" }) do
+    for _, language in ipairs({ "typescript", "javascript", "typescriptreact" }) do
       require("dap").configurations[language] = {
         {
           type = "pwa-chrome",
