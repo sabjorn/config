@@ -87,7 +87,9 @@ return {
                   }
             })
 
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'gd', function()
+                require('telescope.builtin').lsp_definitions({ jump_type = "never" })
+            end, { silent = true })
             vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)
             vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, opts)
