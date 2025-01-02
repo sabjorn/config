@@ -11,10 +11,10 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-    dependencies = {
+        dependencies = {
 		  "williamboman/mason-lspconfig.nvim",
 		  "neovim/nvim-lspconfig",
-    },
+        },
 		config = function()
 			local cmp = require("cmp")
 			require("luasnip.loaders.from_vscode").lazy_load()
