@@ -5,7 +5,6 @@ return {
       "pyright",
       "pytest",
       "debugpy",
-      "black",
       "ruff",
       "mypy",
       "rust-analyzer",

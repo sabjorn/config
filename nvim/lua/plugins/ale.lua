@@ -3,8 +3,7 @@ return {
     config = function()
         vim.g.ale_fix_on_save = 1
         vim.g.ale_linters = {
-            --python = {'flake8', 'black', 'mypy'},
-            python = {'black', 'mypy'},
+            python = {'ruff', 'mypy'},
             c = {'clang', 'clangtidy'},
             cpp = {'clang', 'clangtidy'},
             bash = {'shellcheck'},
@@ -13,7 +12,7 @@ return {
             javascript = {'eslint'},
         }
         vim.g.ale_fixers = {
-            python = {'black'},
+            python = {'ruff'},
             c = {'clang-format', 'clangtidy'},
             cpp = {'clang-format', 'clangtidy'},
             bash = {'shfmt'},
