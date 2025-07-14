@@ -1,6 +1,7 @@
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
+		version = "v1.32.0",
 		lazy = false,
 		opts = {
 			auto_install = true,
