@@ -11,7 +11,6 @@ return {
 			mason_lspconfig.setup({
 				ensure_installed = {
 					"pyright",
-					"pylsp",
                     "rust_analyzer",
                     "ts_ls"
 				},

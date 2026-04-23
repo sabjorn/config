@@ -9,7 +9,6 @@ return {
       version = "1.x",
       build = "yarn install && yarn run compile vsDebugServerBundle && mv dist out",  -- Build JS Debugger
     },
-    "tpope/vim-fugitive",
     "nvim-neotest/nvim-nio",
   },
   config = function()
