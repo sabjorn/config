@@ -4,9 +4,6 @@ return {
     'kyazdani42/nvim-web-devicons'
   },
   {
-    'airblade/vim-gitgutter',
-  },
-  {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
