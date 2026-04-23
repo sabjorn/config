@@ -10,7 +10,7 @@ return {
     require("nvim-web-devicons").setup()
     require("neo-tree").setup({
       window = {
-        width = 10,
+        width = 15,
       },
       filesystem = {
         filtered_items = {
