@@ -1,9 +1,6 @@
 return {
   { 'tanvirtin/monokai.nvim'},
   {
-    'kyazdani42/nvim-web-devicons'
-  },
-  {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,

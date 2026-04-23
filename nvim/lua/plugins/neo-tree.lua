@@ -7,7 +7,11 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function()
+    require("nvim-web-devicons").setup()
     require("neo-tree").setup({
+      window = {
+        width = 25,
+      },
       filesystem = {
         filtered_items = {
           visible = false, -- when true, they will just be displayed differently than normal items
