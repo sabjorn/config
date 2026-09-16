@@ -1,112 +1,107 @@
 return {
 	{
-		"williamboman/mason-lspconfig.nvim",
-		version = "v1.32.0",
+		"neovim/nvim-lspconfig",
 		lazy = false,
-		opts = {
-			auto_install = true,
-		},
 		config = function()
-			local mason_lspconfig = require("mason-lspconfig")
-			mason_lspconfig.setup({
-				ensure_installed = {
-					"pyright",
-                    "rust_analyzer",
-                    "ts_ls"
+			-- nvim 0.11+: configure servers with vim.lsp.config, start them with
+			-- vim.lsp.enable. nvim-lspconfig ships the base config in its lsp/ dir;
+			-- what we set here is merged on top of it.
+			vim.lsp.config("*", {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			})
+
+			vim.lsp.config("pyright", {
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							autoImportCompletions = true,
+						},
+						--pythonPath = vim.fn.expand("~/micro-services/venv/bin/python"),
+					},
 				},
-				auto_install = true,
+			})
+
+			vim.lsp.config("lua_ls", {})
+
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			})
+
+			local ts_inlay_hints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			}
+
+			vim.lsp.config("ts_ls", {
+				on_attach = function(_, bufnr)
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				end,
+				settings = {
+					typescript = { inlayHints = ts_inlay_hints },
+					javascript = { inlayHints = ts_inlay_hints },
+				},
+			})
+
+			vim.lsp.enable({ "pyright", "lua_ls", "rust_analyzer", "ts_ls" })
+
+			vim.keymap.set("n", "gd", function()
+				require("telescope.builtin").lsp_definitions({ jump_type = "never" })
+			end, { silent = true })
+			vim.keymap.set("n", "gr", function()
+				require("telescope.builtin").lsp_references({ jump_type = "never" })
+			end, { silent = true })
+			vim.keymap.set("n", "D", vim.lsp.buf.hover)
+			vim.keymap.set("n", "gn", function()
+				vim.diagnostic.jump({ count = 1, float = true })
+			end)
+			vim.keymap.set("n", "gp", function()
+				vim.diagnostic.jump({ count = -1, float = true })
+			end)
+			vim.keymap.set("n", "ca", vim.lsp.buf.code_action)
+			vim.keymap.set("i", "<leader>h", vim.lsp.buf.signature_help)
+			vim.keymap.set("n", "gh", "<cmd>ClangdSwitchSourceHeader<cr>")
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+				callback = function(ev)
+					vim.keymap.set("n", "rn", vim.lsp.buf.rename, { buffer = ev.buf })
+				end,
 			})
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
+		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
+		dependencies = {
+			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				python = {
-					analysis = {
-						autoSearchPaths = true,
-						useLibraryCodeForTypes = true,
-						autoImportCompletions = true,
-					},
-					--pythonPath = vim.fn.getcwd() .. "/venv/bin/python3",
-					pythonPath = vim.fn.getcwd() .. '~/micro-services/venv/bin/python',
-                    --
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"pyright",
+					"lua_ls",
+					"rust_analyzer",
+					"ts_ls",
 				},
-			})
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-            lspconfig.rust_analyzer.setup({
-               capabilities = capabilities,
-               settings = {
-                 ["rust-analyzer"] = {
-                   cargo = {
-                     allFeatures = true,
-                   },
-                   procMacro = {
-                     enable = true,
-                   },
-                 },
-               },
-            })
-
-            lspconfig.ts_ls.setup({
-                 on_attach = function(client, bufnr)
-                   vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-                 end,
-                settings = {
-                    typescript = {
-                      inlayHints = {
-                        includeInlayParameterNameHints = 'all',
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayEnumMemberValueHints = true,
-                      }
-                    },
-                    javascript = {
-                      inlayHints = {
-                        includeInlayParameterNameHints = 'all',
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayEnumMemberValueHints = true,
-                      }
-                    }
-                  }
-            })
-
-            vim.keymap.set('n', 'gd', function()
-                require('telescope.builtin').lsp_definitions({ jump_type = "never" })
-            end, { silent = true })
-            vim.keymap.set("n", "D", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "gn", vim.diagnostic.goto_next, opts)
-            vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, opts)
-            vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
-            vim.keymap.set('n', 'gr', function()
-                require('telescope.builtin').lsp_references({ jump_type = "never" })
-            end, {silent = true})
-            --vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
-            vim.keymap.set("i", "<leader>h", vim.lsp.buf.signature_help, opts)
-            vim.keymap.set("n", 'gh', '<cmd>ClangdSwitchSourceHeader<cr>')
-
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					local opts = { buffer = ev.buf }
-			    vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
-				end,
+				automatic_enable = true,
 			})
 		end,
 	},
