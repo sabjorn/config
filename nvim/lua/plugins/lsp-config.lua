@@ -23,6 +23,8 @@ return {
 				},
 			})
 
+			vim.lsp.config("ty", {})
+
 			vim.lsp.config("lua_ls", {})
 
 			vim.lsp.config("rust_analyzer", {
@@ -59,7 +61,7 @@ return {
 				},
 			})
 
-			vim.lsp.enable({ "pyright", "lua_ls", "rust_analyzer", "ts_ls" })
+			vim.lsp.enable({ "ty", "lua_ls", "rust_analyzer", "ts_ls" })
 
 			vim.keymap.set("n", "gd", function()
 				require("telescope.builtin").lsp_definitions({ jump_type = "never" })
@@ -96,12 +98,14 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"pyright",
+					"ty",
 					"lua_ls",
 					"rust_analyzer",
 					"ts_ls",
 				},
-				automatic_enable = true,
+				-- pyright stays installed but disabled while trying ty; running both
+				-- duplicates diagnostics/hover.
+				automatic_enable = { exclude = { "pyright" } },
 			})
 		end,
 	},
